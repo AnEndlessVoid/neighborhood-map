@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import {compose, withProps} from "recompose"
 import { withGoogleMap, GoogleMap, Marker, InfoWindow, withScriptjs } from 'react-google-maps';
+import {Map} from './MapContainer.js';
+import VenueMarker from './VenueMarker.js';
+
 
 
   const MyGoogleMapComponent = compose(
@@ -12,29 +15,21 @@ import { withGoogleMap, GoogleMap, Marker, InfoWindow, withScriptjs } from 'reac
      }),
    withScriptjs,
    withGoogleMap
- )((props) =>
-      <GoogleMap
-        defaultZoom = { 13 }
+ )((props) =>{
+   const markers = props.venues.map(venue => <VenueMarker
+                    key = {venue.id}
+                    venue = {venue.name}
+                    location = {{lat:venue.lat, lng:venue.lng}}
+                  />);
+  return(
+    <GoogleMap
+        defaultZoom = {13}
         defaultCenter = { { lat: 37.9838096, lng: 23.7275388 } }
       >
-      {props.isMarkerShown && <Marker position = {{lat:37.9838096, lng: 23.7275388 }}/>}
-      </GoogleMap>
-   );
-class Map extends Component {  //Help for the map taken from https://bit.ly/2MbUOGi
-   render() {
-     return(
-      <div>
-        <MyGoogleMapComponent //markers = {markers}
-        /*onMarkerClicked = {onLocationClicked}
-        appCenter = {newCenter}
-        onToggleOpen = {handleToggleOpen}
-        showInfoIndex = {showInfoIndex}
-        markerIcon = {markerIcon}
-        zoom = {zoom}*/
-        />
-      </div>
-   )
-  }
- };
+      {markers}
+    </GoogleMap>
+    )
+  });
+
 
  export default MyGoogleMapComponent
