@@ -7,13 +7,14 @@ import Navbar from "./components/Navbar/Navbar.js";
 import SideDrawer from "./components/Navbar/SideDrawer.js"
 import Backdrop from './components/Navbar/Backdrop.js'
 import markerIcon from './marker.png';
-import * as API from './components/API.js';
+//import * as API from './components/API.js';
 
 class App extends Component {
   state = {
     sideDrawerOpen: false, //for the hamburger menu to be closed by default
     locations : [],
     originalLocations : [],
+    markers : [],
     markerIcon : markerIcon,
     defaultMarkerIcon : markerIcon,
     defaultCenter : {lat: 37.9838096, lng: 23.7275388},
@@ -29,24 +30,32 @@ class App extends Component {
 
 
   componentDidMount() {
+      const url = `https://api.foursquare.com/v2/venues/explore?client_id=PFGCHRSKRSOWAKMOCYP3IS0YUB315OZ4Y5HFDGQOOX0K2CXR&client_secret=BWDVZOU2PWLGIOHREUFFGJUMRCR5Z50BEFQPS02GBSSZWODY&v=20180801&near=Athens&limit=10`;
+      window.gm_authFailure = this.gm_authFailure;
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          this.setState({
+            locations: data.response.groups[0].items,
+            markers: data.response.groups[0].items
+          });
+        })
+        .catch(e => {
+          console.log("Error:", e);
+          alert('Ooops. There was a problem with the FourSquare API response. Please refresh the page and if the problem continues please contact the developer of this app')
+          this.setState({ places: [] });
+        });
 
-    function handleErrors(response) {
-      if (!response.ok) {
-    //console.log('response status Text',  response)
-        throw Error(response.statusText);
-  }
-  return response;
-}
-  API.getLocationsAll()
-  //.then(handleErrors)
-  .then((locations) => {
-    this.setState({locations})
-    this.setState({originalLocations: locations})
-  }).catch((error) => {
-    alert('Error While getting All Locations data from FourSquare API >> Sorry!! Locations Data Will not be loaded or displayed ')
-    console.log('Error While Getting All Locations')
-  })
-}
+        fetch(this.state.urlMaps, {mode: 'no-cors'})
+        .then(function(response) {
+          // console.log(response);
+        }).catch(function(error) {
+          alert('Whooops. Sorry, there was an error with loading the map. Google servers are probably down.', error)
+        });
+
+
+
+    }
 
   drawerToggleClickHandler = () => {
     this.setState((prevState) => {
@@ -71,7 +80,8 @@ return (
     {backdrop}
     <main style={{marginTop: '64px'}}>
     <Map
-    locations={this.state.locations}/>
+    locations={this.state.locations}
+    markers = {this.state.markers}/>
       </main>
     </div>
 )

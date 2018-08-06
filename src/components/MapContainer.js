@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+/*import React, {Component} from 'react';
 import MyGoogleMapComponent from './Map.js';
 
 export default class Map extends Component {  //Help for the map taken from https://bit.ly/2MbUOGi
@@ -13,9 +13,9 @@ export default class Map extends Component {  //Help for the map taken from http
       onToggleOpen = {handleToggleOpen}
       showInfoIndex = {showInfoIndex}
       markerIcon = {markerIcon}
-      zoom = {zoom}*/
+      zoom = {zoom}
       />
     </div>
  )
 }
-};
+}; */
