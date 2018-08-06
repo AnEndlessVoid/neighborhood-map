@@ -37,15 +37,16 @@ const Map = compose(
           animation = {location.venue.id === props.selectedLocation && props.isAnimated ? 1 : -1}
           onClick = {event => {
             console.log(props)
-            //this.props.toggleActiveLocation({lat, lng}, location.venue.id)
-            //props.onToggleOpen(event, location.venue.id)
+            //props.toggleActiveLocation({lat, lng}, location.venue.id)
+            props.onToggleOpen(event, location.venue.id)
           }}
         >
         {props.selectedLocation === location.venue.id && (
-          <InfoWindow onCloseClick={() => {
-            props.toggleAnimation(props.isAnimated);
-            props.onToggleOpen();
-          }}
+          <InfoWindow onCloseClick={props.onToggleClose}
+            ///() => {
+            ///props.toggleAnimation(props.isAnimated);
+            ///props.onToggleOpen();
+          ///}}
             > //help taken from https://bit.ly/2MnXz7v
             <div aria-label = {`Information about ${location.venue.name}`}>
               <h1>{location.venue.name}</h1>

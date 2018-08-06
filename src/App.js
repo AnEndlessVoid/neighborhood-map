@@ -21,7 +21,8 @@ class App extends Component {
     defaultCenter : {lat: 37.9838096, lng: 23.7275388},
     newCenter : {lat: 37.9838096, lng: 23.7275388},
     //isOpen : false,
-    selectedLocation : -1
+    selectedLocation : -1,
+    isAnimated : false
   };
   // this.onToggleOpen = this.onToggleOpen.bind(this); //I bind all the funtions so they are not undefined
   // this.onToggleClose = this.onToggleClose.bind(this);
@@ -117,6 +118,14 @@ return (
     <Map
     locations={this.state.locations}
     markers = {this.state.markers}
+    toggleActiveLocation = {this.toggleActiveLocation}
+    isOpen = {this.state.isOpen}
+    selectedLocation = {this.selectedLocation}
+    onToggleOpen = {this.onToggleOpen}
+    onToggleClose = {this.onToggleClose}
+    animation = {this.state.animation}
+    isAnimated = {this.state.isAnimated}
+    toggleAnimation = {this.toggleAnimation}
     />
       </main>
     </div>
