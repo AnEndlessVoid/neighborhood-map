@@ -8,7 +8,10 @@ export default class VenueMarker extends Component{
   render(){
     return(
       <Marker
-        position = {this.props.location}
+        key = {this.props.index}
+        id = {this.props.venueId}
+        position = {this.props.position}
+        title = {this.props.title}
         icon = {markerIcon}
         >
         </Marker>
