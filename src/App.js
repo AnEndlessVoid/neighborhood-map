@@ -6,13 +6,47 @@ import {venues} from './components/Venues.js'
 import Navbar from "./components/Navbar/Navbar.js";
 import SideDrawer from "./components/Navbar/SideDrawer.js"
 import Backdrop from './components/Navbar/Backdrop.js'
+import markerIcon from './marker.png';
+import * as API from './components/API.js';
 
 class App extends Component {
   state = {
     sideDrawerOpen: false, //for the hamburger menu to be closed by default
-    venues : [],
-    venue : {}
+    locations : [],
+    originalLocations : [],
+    markerIcon : markerIcon,
+    defaultMarkerIcon : markerIcon,
+    defaultCenter : {lat: 37.9838096, lng: 23.7275388},
+    newCenter : {lat: 37.9838096, lng: 23.7275388}
   };
+
+  componentWillMount() {
+    this.setState({
+      markerIcon: markerIcon,
+      defaultMarkerIcon: markerIcon
+    })
+  }
+
+
+  componentDidMount() {
+
+    function handleErrors(response) {
+      if (!response.ok) {
+    //console.log('response status Text',  response)
+        throw Error(response.statusText);
+  }
+  return response;
+}
+  API.getLocationsAll()
+  //.then(handleErrors)
+  .then((locations) => {
+    this.setState({locations})
+    this.setState({originalLocations: locations})
+  }).catch((error) => {
+    alert('Error While getting All Locations data from FourSquare API >> Sorry!! Locations Data Will not be loaded or displayed ')
+    console.log('Error While Getting All Locations')
+  })
+}
 
   drawerToggleClickHandler = () => {
     this.setState((prevState) => {
@@ -37,7 +71,7 @@ return (
     {backdrop}
     <main style={{marginTop: '64px'}}>
     <Map
-    venues={venues}/>
+    locations={this.state.locations}/>
       </main>
     </div>
 )

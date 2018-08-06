@@ -16,10 +16,10 @@ import VenueMarker from './VenueMarker.js';
    withScriptjs,
    withGoogleMap
  )((props) =>{
-   const markers = props.venues.map(venue => <VenueMarker
-                    key = {venue.id}
-                    venue = {venue.name}
-                    location = {{lat:venue.lat, lng:venue.lng}}
+   const markers = props.locations.map(location => <VenueMarker
+                    key = {location.id}
+                    venue = {location.name}
+                    location = {{lat:location.lat, lng:location.lng}}
                   />);
   return(
     <GoogleMap
