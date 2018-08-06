@@ -13,15 +13,30 @@
   align-items : center;
   padding : 0 1rem;
 }
-.navbar-logo a{
+.navbar-logo{
   margin-left : 1rem;
   color:white;
   text-decoration : none;
   font-size : 1.5rem;
 }
 
+.spacer{
+  flex:1;
+}
+
+.toolbar-navigation-items ul{
+  /*list-style : none;*/
+  margin : 0;
+  padding : 0;
+  display : flex;
+}
+
 @media screen and (max-width : 768px){
   .toolbar-navigation-items{
     display : none;
+  }
+  .navbar-logo{
+    display : flex;
+    padding : 0 0.5rem;
   }
 }
