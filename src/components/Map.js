@@ -43,10 +43,10 @@ const Map = compose(
         >
         {props.selectedLocation === location.venue.id && (
           <InfoWindow onCloseClick={props.onToggleClose}
-            ///() => {
-            ///props.toggleAnimation(props.isAnimated);
-            ///props.onToggleOpen();
-          ///}}
+            /*() => {
+            props.toggleAnimation(props.isAnimated);
+            props.onToggleOpen();
+          }}*/
             > //help taken from https://bit.ly/2MnXz7v
             <div aria-label = {`Information about ${location.venue.name}`}>
               <h1>{location.venue.name}</h1>
