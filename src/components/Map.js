@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import {compose, withProps} from "recompose"
+import {compose, withProps, withStateHandlers} from "recompose"
 import { withGoogleMap, GoogleMap, Marker, InfoWindow, withScriptjs } from 'react-google-maps';
-/*import {Map} from './MapContainer.js';*/
-import VenueMarker from './VenueMarker.js';
-
-
 
 const Map = compose(
      withProps({
@@ -12,6 +8,13 @@ const Map = compose(
        loadingElement: <div style={{ height: '100%' }} />,
        containerElement: <div style={{height: '500px', width: '100%'}} />,
        mapElement: <div style={{ height: '100%' }} />,
+     }),
+     withStateHandlers(() => ({
+       isOpen: false,
+     }), {
+       onToggleOpen: ({ isOpen }) => () => ({
+         isOpen : !isOpen,
+       })
      }),
    withScriptjs,
    withGoogleMap
@@ -22,7 +25,7 @@ const Map = compose(
      >
    {props.markers.map(location => {
      const {lat, lng} = location.venue.location;
-     let markersElement = (
+     let markerComp = (
        <Marker
           key = {location.venue.id}
           id = {location.venue.id}
@@ -31,11 +34,30 @@ const Map = compose(
           street = {location.venue.location.formattedAddress[0]}
           address = {location.venue.location.formattedAddress[1]}
           aria-label = "marker information"
+          animation = {location.venue.id === props.selectedLocation && props.isAnimated ? 1 : -1}
+          this.props.onClick = {event => {
+            props.toggleActiveLocation({lat, lng}, location.venue.id)
+            //props.onToggleOpen(event, location.venue.id)
+          }}
         >
-
+        {props.selectedLocation === location.venue.id && (
+          <InfoWindow onCloseClick={() => {
+            props.toggleAnimation(props.isAnimated);
+            props.onToggleOpen();
+          }}
+            > //help taken from https://bit.ly/2MnXz7v
+            <div aria-label = {`Information about ${location.venue.name}`}>
+              <h1>{location.venue.name}</h1>
+              <h2>Address:</h2>
+              <p>{location.venue.location.formattedAddress[0]}</p>
+              <p>{location.venue.location.formattedAddress[1]}</p>
+                //{props.locations[props.selectedLocation].name}
+              </div>
+          </InfoWindow>
+        )}
         </Marker>
         );
-  return markersElement;
+  return markerComp;
 })}
     </GoogleMap>
   ));
