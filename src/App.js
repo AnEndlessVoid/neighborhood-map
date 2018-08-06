@@ -25,7 +25,7 @@ class App extends Component {
   };
   // this.onToggleOpen = this.onToggleOpen.bind(this); //I bind all the funtions so they are not undefined
   // this.onToggleClose = this.onToggleClose.bind(this);
-  this.toggleActiveLocation = this.toggleActiveLocation.bind(this)
+  //this.toggleActiveLocation = this.toggleActiveLocation.bind(this)
 }
 
   componentWillMount() {

@@ -36,7 +36,8 @@ const Map = compose(
           aria-label = "marker information"
           animation = {location.venue.id === props.selectedLocation && props.isAnimated ? 1 : -1}
           onClick = {event => {
-            props.toggleActiveLocation({lat, lng}, location.venue.id)
+            console.log(props)
+            //this.props.toggleActiveLocation({lat, lng}, location.venue.id)
             //props.onToggleOpen(event, location.venue.id)
           }}
         >
