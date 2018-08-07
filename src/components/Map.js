@@ -33,6 +33,8 @@ const Map = compose(
             //props.toggleActiveLocation({lat, lng}, location.venue.id)
             props.onToggleOpen(event, location.venue.id)
           }}
+          defaultAnimation={2}
+          animation={props.selectedLocation === location.venue.id ? 1 : null}
         >
         {props.selectedLocation === location.venue.id && (
           <InfoWindow

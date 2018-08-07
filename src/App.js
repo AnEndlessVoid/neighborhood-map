@@ -21,7 +21,7 @@ class App extends Component {
     newCenter : {lat: 37.9838096, lng: 23.7275388},
     isOpen : false,
     selectedLocation : null,
-    isAnimated : false
+    //isAnimated : false
   };
 
 }
