@@ -62,18 +62,18 @@ class App extends Component {
 
     }
 
-  toggleActiveLocation = ({lat,lng}, marker) => {
+  toggleActiveLocation = ({lat,lng}, id) => {
     this.setState({
       newCenter : {lat,lng},
       zoom : 17,
       isAnimated : true,
-      selectedLocation : marker
+      selectedLocation : id
     });
   };
 
-  toggleAnimation = marker => {
+  toggleAnimation = id => {
     this.setState({
-      selectedLocation : marker,
+      selectedLocation : id,
       isAnimated : false
     })
   }

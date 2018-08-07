@@ -42,7 +42,8 @@ const Map = compose(
           }}
         >
         {props.selectedLocation === location.venue.id && (
-          <InfoWindow onCloseClick={props.onToggleClose}
+          <InfoWindow
+          onCloseClick={props.onToggleClose}
             /*() => {
             props.toggleAnimation(props.isAnimated);
             props.onToggleOpen();
