@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {compose, withProps, withStateHandlers} from "recompose"
+import {compose, withProps} from "recompose"
 import { withGoogleMap, GoogleMap, Marker, InfoWindow, withScriptjs } from 'react-google-maps';
 
 const Map = compose(
@@ -42,13 +42,12 @@ const Map = compose(
             props.toggleAnimation(props.isAnimated);
             props.onToggleOpen();
           }}*/
-            > //help taken from https://bit.ly/2MnXz7v
+            > 
             <div aria-label = {`Information about ${location.venue.name}`}>
               <h1>{location.venue.name}</h1>
               <h2>Address:</h2>
               <p>{location.venue.location.formattedAddress[0]}</p>
               <p>{location.venue.location.formattedAddress[1]}</p>
-                /*{props.locations[props.selectedLocation].name}*/
               </div>
           </InfoWindow>
         )}
