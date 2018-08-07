@@ -24,9 +24,7 @@ class App extends Component {
     selectedLocation : -1,
     isAnimated : false
   };
-  // this.onToggleOpen = this.onToggleOpen.bind(this); //I bind all the funtions so they are not undefined
-  // this.onToggleClose = this.onToggleClose.bind(this);
-  //this.toggleActiveLocation = this.toggleActiveLocation.bind(this)
+
 }
 
   componentWillMount() {
@@ -120,7 +118,7 @@ return (
     markers = {this.state.markers}
     toggleActiveLocation = {this.toggleActiveLocation}
     isOpen = {this.state.isOpen}
-    selectedLocation = {this.selectedLocation}
+    selectedLocation = {this.state.selectedLocation}
     onToggleOpen = {this.onToggleOpen}
     onToggleClose = {this.onToggleClose}
     animation = {this.state.animation}
