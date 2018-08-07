@@ -9,13 +9,6 @@ const Map = compose(
        containerElement: <div style={{height: '500px', width: '100%'}} />,
        mapElement: <div style={{ height: '100%' }} />,
      }),
-     withStateHandlers(() => ({
-       isOpen: false,
-     }), {
-       onToggleOpen: ({ isOpen }) => () => ({
-         isOpen : !isOpen,
-       })
-     }),
    withScriptjs,
    withGoogleMap
  )((props) => (
@@ -43,6 +36,7 @@ const Map = compose(
         >
         {props.selectedLocation === location.venue.id && (
           <InfoWindow
+          key = {location.venue.id}
           onCloseClick={props.onToggleClose}
             /*() => {
             props.toggleAnimation(props.isAnimated);
@@ -54,7 +48,7 @@ const Map = compose(
               <h2>Address:</h2>
               <p>{location.venue.location.formattedAddress[0]}</p>
               <p>{location.venue.location.formattedAddress[1]}</p>
-                //{props.locations[props.selectedLocation].name}
+                /*{props.locations[props.selectedLocation].name}*/
               </div>
           </InfoWindow>
         )}

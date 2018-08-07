@@ -20,8 +20,8 @@ class App extends Component {
     defaultMarkerIcon : markerIcon,
     defaultCenter : {lat: 37.9838096, lng: 23.7275388},
     newCenter : {lat: 37.9838096, lng: 23.7275388},
-    //isOpen : false,
-    selectedLocation : -1,
+    isOpen : false,
+    selectedLocation : null,
     isAnimated : false
   };
 
@@ -59,35 +59,35 @@ class App extends Component {
           alert('There seems to be a problem with the Google Maps API response. Please reload the page.', error)
         });
 
-
     }
 
-  toggleActiveLocation = ({lat,lng}, id) => {
+  toggleActiveLocation = ({lat,lng}, marker) => {
     this.setState({
       newCenter : {lat,lng},
       zoom : 17,
       isAnimated : true,
-      selectedLocation : id
+      selectedLocation : marker
     });
   };
 
-  toggleAnimation = id => {
+  toggleAnimation = marker => {
     this.setState({
-      selectedLocation : id,
+      selectedLocation : marker,
       isAnimated : false
     })
   }
 
     /*Infowindow functionality*/
-  onToggleOpen = (event, id) => {
+  onToggleOpen = (event, marker) => {
     this.setState({
-      selectedLocation : id
+      selectedLocation : marker,
+      isOpen : !this.state.isOpen
     });
   };
 
   onToggleClose = () => {
     this.setState({
-      selectedLocation : -1
+      selectedLocation : null
     });
   };
     /*Sidebar functionality*/
