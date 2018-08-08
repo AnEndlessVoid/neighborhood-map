@@ -28,6 +28,11 @@
   margin : 0.5rem 0;
 }
 
+.selection {
+  background : red;
+  width : 200px;
+}
+
 @media and screen (min-width : 769px){
   .side-drawer {
     display : none;

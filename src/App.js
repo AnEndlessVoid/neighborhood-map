@@ -12,7 +12,7 @@ class App extends Component {
     this.state = {
     sideDrawerOpen: false, //for the hamburger menu to be closed by default
     locations : [],
-    originalLocations : [],
+    newLocation : [],
     markers : [],
     markerIcon : markerIcon,
     defaultMarkerIcon : markerIcon,
@@ -21,6 +21,7 @@ class App extends Component {
     isOpen : false,
     selectedLocation : null,
     //isAnimated : false
+    displayMenu : false
   };
 
 }
@@ -101,9 +102,22 @@ class App extends Component {
 
   /*Search functionality*/
 
+  showDropdownMenu(event) {
+    event.preventDefault();
+    this.setState({ displayMenu: true }, () => {
+    document.addEventListener('click', this.hideDropdownMenu);
+    });
+  }
+
+  hideDropdownMenu() {
+    this.setState({ displayMenu: false }, () => {
+      document.removeEventListener('click', this.hideDropdownMenu);
+    });
+  }
+
   fullLocationList(){
     this.setState({
-      searchOn : false,
+      displayMenu : false,
       markers : this.state.locations
     });
   }
@@ -127,10 +141,17 @@ class App extends Component {
 }
 return (
   <div style={{height: '100%'}}className="App">
-    <Navbar drawerClickHandler = {this.drawerToggleClickHandler} />
+    <Navbar 
+    drawerClickHandler = {this.drawerToggleClickHandler}
+     />
+    }
     <SideDrawer 
     locations = {this.state.locations}
-    show = {this.state.sideDrawerOpen} />
+    show = {this.state.sideDrawerOpen}
+    displayMenu = {this.state.displayMenu}
+    showDropdownMenu = {this.showDropdownMenu}
+    hideDropdownMenu = {this.hideDropdownMenu}
+    onToggleOpen = {this.onToggleOpen} />
     {backdrop}
     <main style={{marginTop: '64px'}}>
     <Map
