@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import Map from './components/Map.js';
 import Navbar from "./components/Navbar/Navbar.js";
-import SideDrawer from "./components/Navbar/SideDrawer.js"
-import Backdrop from './components/Navbar/Backdrop.js'
+import SideDrawer from "./components/Navbar/SideDrawer.js";
+import Backdrop from './components/Navbar/Backdrop.js';
 import markerIcon from './marker.png';
-//import * as API from './components/API.js';
 
 class App extends Component {
   constructor(props){
@@ -35,7 +34,7 @@ class App extends Component {
 
 
   componentDidMount() { //fetched the locations with forsquare API and mapped through them in Map.js
-      const url = `https://api.foursquare.com/v2/venues/explore?client_id=PFGCHRSKRSOWAKMOCYP3IS0YUB315OZ4Y5HFDGQOOX0K2CXR&client_secret=BWDVZOU2PWLGIOHREUFFGJUMRCR5Z50BEFQPS02GBSSZWODY&v=20180801&near=Athens&limit=10`;
+      const url = `https://api.foursquare.com/v2/venues/explore?client_id=PFGCHRSKRSOWAKMOCYP3IS0YUB315OZ4Y5HFDGQOOX0K2CXR&client_secret=BWDVZOU2PWLGIOHREUFFGJUMRCR5Z50BEFQPS02GBSSZWODY&v=20180801&near=Athens&query=sights&limit=10`;
       window.gm_authFailure = this.gm_authFailure;
       fetch(url)
         .then(response => response.json())
@@ -100,6 +99,26 @@ class App extends Component {
     this.setState({sideDrawerOpen: false});
   };
 
+  /*Search functionality*/
+
+  fullLocationList(){
+    this.setState({
+      searchOn : false,
+      markers : this.state.locations
+    });
+  }
+
+  searchEventHandler(event){
+    const newLocation = this.state.locations.filter(
+      location => location.venue.name === event.target.value);
+    this.setState({
+      newLocation : newLocation,
+      searchOn : true,
+      markers : newLocation
+    });
+    event.preventDefault();
+  }
+
   render() {
     let backdrop;
 
@@ -109,7 +128,9 @@ class App extends Component {
 return (
   <div style={{height: '100%'}}className="App">
     <Navbar drawerClickHandler = {this.drawerToggleClickHandler} />
-    <SideDrawer show = {this.state.sideDrawerOpen} />
+    <SideDrawer 
+    locations = {this.state.locations}
+    show = {this.state.sideDrawerOpen} />
     {backdrop}
     <main style={{marginTop: '64px'}}>
     <Map
@@ -129,20 +150,5 @@ return (
 )
 }
 }
-
-
-/////BEFORE SIDEBAR
-    /*return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <Map
-        venues={venues}/>
-      </div>
-    );
-  }
-}*/
 
 export default App;

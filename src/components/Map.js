@@ -27,13 +27,11 @@ const Map = compose(
           street = {location.venue.location.formattedAddress[0]}
           address = {location.venue.location.formattedAddress[1]}
           aria-label = "marker information"
-          animation = {location.venue.id === props.selectedLocation && props.isAnimated ? 1 : -1}
           onClick = {event => {
             console.log(props)
             //props.toggleActiveLocation({lat, lng}, location.venue.id)
             props.onToggleOpen(event, location.venue.id)
           }}
-          defaultAnimation={2}
           animation={props.selectedLocation === location.venue.id ? 1 : null}
         >
         {props.selectedLocation === location.venue.id && (
