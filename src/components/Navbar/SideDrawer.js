@@ -17,7 +17,7 @@ const SideDrawer = props => {
     aria-label = "Dropdown"
     >
     <form>
-      <select onChange = {props.searchEventHandler}
+      <select onChange = {(event) => props.searchEventHandler(event.target.value)}
         aria-label = "location selection">
         {props.locations.map(location => (
           <option key = {location.venue.id} 
@@ -69,13 +69,7 @@ const SideDrawer = props => {
         )}
       </ul>
    </div>
-    <div>
-      <ul>
-        {props.locations.map(location => (
-          <li key = {location.venue.name}>{location.venue.name}</li>
-          ))}
-      </ul>
-    </div>
+
   </nav>
   );
 };

@@ -26,14 +26,6 @@ class App extends Component {
   this.searchEventHandler = this.searchEventHandler.bind(this);
 }
 
-  componentWillMount() {
-    this.setState({
-      markerIcon: markerIcon,
-      defaultMarkerIcon: markerIcon
-    })
-  }
-
-
   componentDidMount() { //fetched the locations with forsquare API and mapped through them in Map.js
       const url = `https://api.foursquare.com/v2/venues/explore?client_id=PFGCHRSKRSOWAKMOCYP3IS0YUB315OZ4Y5HFDGQOOX0K2CXR&client_secret=BWDVZOU2PWLGIOHREUFFGJUMRCR5Z50BEFQPS02GBSSZWODY&v=20180801&near=Athens&query=sights&limit=10`;
       window.gm_authFailure = this.gm_authFailure;
@@ -122,9 +114,9 @@ class App extends Component {
     });
   }
 
-  searchEventHandler(event){
+  searchEventHandler(value){
     const newLocation = this.state.locations.filter(
-      location => location.venue.name === event.target.value);
+      location => location.venue.name === value);
     this.setState = {
       newLocation : newLocation,
       searchOn : true,
