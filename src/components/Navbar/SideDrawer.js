@@ -2,7 +2,7 @@ import React from 'react';
 import './SideDrawer.css';
 
 const SideDrawer = props => {
-    let tabIndex = 0;
+    let tabIndex = 0; /*found the equivalent of HTML's tabindex here : https://reactjs.org/docs/dom-elements.html*/
     let drawerClasses = "side-drawer";
   if (props.show) {
     drawerClasses = "side-drawer open";
@@ -30,12 +30,6 @@ const SideDrawer = props => {
       <ul> {
         props.displayMenu ? (
           <div>
-            <p
-            onClick = {props.fullLocationList}
-            onKeyPress = {props.fullLocationList}
-            tabIndex = {tabIndex}
-            > Clear 
-            </p>
             <li
             onClick = {event => 
               {props.onToggleOpen(event, props.newLocation[0].venue.id)
@@ -61,7 +55,9 @@ const SideDrawer = props => {
                   props.onToggleOpen(event, location.venue.id)
                 }}
                 key = {location.venue.id}
-                id = {location.venue.id}  
+                id = {location.venue.id}
+                role = 'button'
+                tabIndex = {tabIndex}  
               >
               {location.venue.name}
               </li>

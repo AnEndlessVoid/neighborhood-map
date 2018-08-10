@@ -41,6 +41,7 @@ select {
 
 .location-list{
   padding-left: 0px;
+  cursor : pointer;
 
 }
 

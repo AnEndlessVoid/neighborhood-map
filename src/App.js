@@ -31,7 +31,7 @@ class App extends Component {
       /*Error Handling for the Forsquare API*/
       /* for the authentication error : https://developers.google.com/maps/documentation/javascript/events#auth-errors*/
       window.gm_authFailure = this.gm_authFailure;
-      fetch(url)
+      fetch(url) /*https://blog.hellojs.org/fetching-api-data-with-react-js-460fe8bbf8f2*/
         .then(response => response.json())
         .then(data => {
           this.setState({
@@ -71,7 +71,7 @@ class App extends Component {
     this.setState((prevState) => {
       return{sideDrawerOpen: !prevState.siteDrawerOpen}
     });
-  }; //the open and closing of the hamburger menu Handler
+  }; //the open and closing of the hamburger menu handler
 
   backdropClickHandler = () => {
     this.setState({sideDrawerOpen: false});
@@ -108,7 +108,7 @@ class App extends Component {
       markers : newLocation
     });
      return false;
-  }
+   }
 
   render() {
     let backdrop;

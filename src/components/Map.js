@@ -36,6 +36,7 @@ const Map = compose(
           <InfoWindow
           key = {location.venue.id}
           onCloseClick={props.onToggleClose}
+          tabIndex = {0}
             > 
             <div aria-label = {`Information about the selected place`}>
               <h1>{location.venue.name}</h1>
