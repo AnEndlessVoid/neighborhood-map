@@ -44,4 +44,9 @@ select {
 
 }
 
+@media screen and (max-width : 730px){
+  select {
+    width : 100px;
+  }
 
+}

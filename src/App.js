@@ -28,6 +28,8 @@ class App extends Component {
 
   componentDidMount() { //fetched the locations with forsquare API and mapped through them in Map.js
       const url = `https://api.foursquare.com/v2/venues/explore?client_id=PFGCHRSKRSOWAKMOCYP3IS0YUB315OZ4Y5HFDGQOOX0K2CXR&client_secret=BWDVZOU2PWLGIOHREUFFGJUMRCR5Z50BEFQPS02GBSSZWODY&v=20180801&near=Athens&query=sights&limit=10`;
+      /*Error Handling for the Forsquare API*/
+      /* for the authentication error : https://developers.google.com/maps/documentation/javascript/events#auth-errors*/
       window.gm_authFailure = this.gm_authFailure;
       fetch(url)
         .then(response => response.json())
@@ -42,31 +44,14 @@ class App extends Component {
           alert('There seems to be a problem with the FourSquare API response. Please reload the page.')
           this.setState({ locations: [] });
         });
-
-        fetch(this.state.urlMaps, {mode: 'no-cors'})
+      /*Error Handling for the Google Map API*/
+        fetch(this.state.googleMapURL)
         .then(function(response) {
-          // console.log(response);
         }).catch(function(error) {
           alert('There seems to be a problem with the Google Maps API response. Please reload the page.', error)
         });
 
     }
-
-  toggleActiveLocation = ({lat,lng}, marker) => {
-    this.setState({
-      newCenter : {lat,lng},
-      zoom : 17,
-      isAnimated : true,
-      selectedLocation : marker
-    });
-  };
-
-  toggleAnimation = marker => {
-    this.setState({
-      selectedLocation : marker,
-      isAnimated : false
-    })
-  }
 
     /*Infowindow functionality*/
   onToggleOpen = (event, marker) => {
@@ -92,7 +77,7 @@ class App extends Component {
     this.setState({sideDrawerOpen: false});
   };
 
-  /*Search functionality*/
+  /*Dropdown functionality*/
 
   showDropdownMenu(event) {
     event.preventDefault();

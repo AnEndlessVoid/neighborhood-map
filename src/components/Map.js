@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {compose, withProps} from "recompose"
 import { withGoogleMap, GoogleMap, Marker, InfoWindow, withScriptjs } from 'react-google-maps';
 
@@ -9,7 +9,7 @@ const Map = compose(
        containerElement: <div style={{height: '500px', width: '100%'}} />,
        mapElement: <div style={{ height: '100%' }} />,
      }),
-   withScriptjs,
+   withScriptjs, /*https://tomchentw.github.io/react-google-maps/#withscriptjs*/
    withGoogleMap
  )((props) => (
    <GoogleMap
@@ -19,7 +19,7 @@ const Map = compose(
    {props.markers.map(location => {
      const {lat, lng} = location.venue.location;
      let markerComp = (
-       <Marker
+       <Marker /*https://stackoverflow.com/questions/43859785/how-do-i-display-multiple-markers-with-react-google-maps*/
           key = {location.venue.id}
           id = {location.venue.id}
           name = {location.venue.name}
@@ -28,8 +28,6 @@ const Map = compose(
           address = {location.venue.location.formattedAddress[1]}
           aria-label = "marker information"
           onClick = {event => {
-            console.log(props)
-            //props.toggleActiveLocation({lat, lng}, location.venue.id)
             props.onToggleOpen(event, location.venue.id)
           }}
           animation={props.selectedLocation === location.venue.id ? 1 : null}
@@ -38,12 +36,8 @@ const Map = compose(
           <InfoWindow
           key = {location.venue.id}
           onCloseClick={props.onToggleClose}
-            /*() => {
-            props.toggleAnimation(props.isAnimated);
-            props.onToggleOpen();
-          }}*/
             > 
-            <div aria-label = {`Information about ${location.venue.name}`}>
+            <div aria-label = {`Information about the selected place`}>
               <h1>{location.venue.name}</h1>
               <h2>Address:</h2>
               <p>{location.venue.location.formattedAddress[0]}</p>
