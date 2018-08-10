@@ -151,7 +151,9 @@ return (
     displayMenu = {this.state.displayMenu}
     showDropdownMenu = {this.showDropdownMenu}
     hideDropdownMenu = {this.hideDropdownMenu}
-    onToggleOpen = {this.onToggleOpen} />
+    onToggleOpen = {this.onToggleOpen}
+    searchEventHandler = {this.searchEventHandler}
+    newLocation = {this.state.newLocation} />
     {backdrop}
     <main style={{marginTop: '64px'}}>
     <Map

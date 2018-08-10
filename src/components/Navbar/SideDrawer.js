@@ -72,7 +72,7 @@ const SideDrawer = props => {
     <div>
       <ul>
         {props.locations.map(location => (
-          <li>{location.venue.name}</li>
+          <li key = {location.venue.id}>{location.venue.name}</li>
           ))}
       </ul>
     </div>
