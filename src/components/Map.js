@@ -34,7 +34,7 @@ const Map = compose(
           }}
           animation={props.selectedLocation === location.venue.id ? 1 : null}
         >
-        /* InfoWindow displayed one at a time help from https://stackoverflow.com/questions/50399464/react-google-maps-infowindow-toggle-display-one-at-a-time/50427200#50427200*/
+        {/* InfoWindow displayed one at a time help from https://stackoverflow.com/questions/50399464/react-google-maps-infowindow-toggle-display-one-at-a-time/50427200#50427200*/}
         {props.selectedLocation === location.venue.id && (
           <InfoWindow
           key = {location.venue.id}
