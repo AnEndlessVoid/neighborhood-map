@@ -117,11 +117,11 @@ class App extends Component {
   searchEventHandler(value){
     const newLocation = this.state.locations.filter(
       location => location.venue.name === value);
-    this.setState = {
+    this.setState  ({
       newLocation : newLocation,
       searchOn : true,
       markers : newLocation
-    };
+    });
      return false;
   }
 
