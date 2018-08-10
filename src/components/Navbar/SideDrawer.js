@@ -13,7 +13,6 @@ const SideDrawer = props => {
   return ( /*passed the open/close info to the <SideDrawer />*/
   <nav className = {drawerClasses}>
     <div className = "dropdown" 
-    style = {{background : "red", width : "200px"}}
     aria-label = "Dropdown"
     >
     <form>
@@ -54,6 +53,7 @@ const SideDrawer = props => {
           ) : (
             props.locations.map(location => (
               <li
+                className = "location-list"
                 onClick = {event =>{
                   props.onToggleOpen(event, location.venue.id)
                 }}
