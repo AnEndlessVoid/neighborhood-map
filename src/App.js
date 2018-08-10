@@ -23,7 +23,7 @@ class App extends Component {
     //isAnimated : false
     displayMenu : false
   };
-
+  this.searchEventHandler = this.searchEventHandler.bind(this);
 }
 
   componentWillMount() {
@@ -125,12 +125,12 @@ class App extends Component {
   searchEventHandler(event){
     const newLocation = this.state.locations.filter(
       location => location.venue.name === event.target.value);
-    this.setState({
+    this.setState = {
       newLocation : newLocation,
       searchOn : true,
       markers : newLocation
-    });
-    event.preventDefault();
+    };
+     return false;
   }
 
   render() {
@@ -153,7 +153,8 @@ return (
     hideDropdownMenu = {this.hideDropdownMenu}
     onToggleOpen = {this.onToggleOpen}
     searchEventHandler = {this.searchEventHandler}
-    newLocation = {this.state.newLocation} />
+    newLocation = {this.state.newLocation}
+    fullLocationList = {this.fullLocationList} />
     {backdrop}
     <main style={{marginTop: '64px'}}>
     <Map
