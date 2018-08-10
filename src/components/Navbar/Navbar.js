@@ -10,7 +10,7 @@ const Navbar = props => (
         </div>
         <div className = "navbar-logo">NEIGHBORHOOD MAP</div>
         <div className = "spacer" />
-
+        <div className = "navbar-credit"> <p>Powered by <a href = 'https://developer.foursquare.com/'>Forsquare</a></p></div>
     </nav>
   </header>
 );

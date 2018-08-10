@@ -20,7 +20,6 @@ class App extends Component {
     newCenter : {lat: 37.9838096, lng: 23.7275388},
     isOpen : false,
     selectedLocation : null,
-    //isAnimated : false
     displayMenu : false
   };
   this.searchEventHandler = this.searchEventHandler.bind(this);
@@ -28,7 +27,7 @@ class App extends Component {
 
   componentDidMount() { //fetched the locations with forsquare API and mapped through them in Map.js
       const url = `https://api.foursquare.com/v2/venues/explore?client_id=PFGCHRSKRSOWAKMOCYP3IS0YUB315OZ4Y5HFDGQOOX0K2CXR&client_secret=BWDVZOU2PWLGIOHREUFFGJUMRCR5Z50BEFQPS02GBSSZWODY&v=20180801&near=Athens&query=sights&limit=10`;
-      /*Error Handling for the Forsquare API*/
+      /*Error Handling for the Google Map API*/
       /* for the authentication error : https://developers.google.com/maps/documentation/javascript/events#auth-errors*/
       window.gm_authFailure = this.gm_authFailure;
       fetch(url) /*https://blog.hellojs.org/fetching-api-data-with-react-js-460fe8bbf8f2*/
@@ -36,22 +35,25 @@ class App extends Component {
         .then(data => {
           this.setState({
             locations: data.response.groups[0].items,
-            markers: data.response.groups[0].items
+            markers: data.response.groups[0].items /*I formed the locations array and the markers array simultaneously*/
           });
         })
+      /*Error Handling for the Forsquare API*/
         .catch(e => {
           console.log("Error:", e);
           alert('There seems to be a problem with the FourSquare API response. Please reload the page.')
           this.setState({ locations: [] });
         });
-      /*Error Handling for the Google Map API*/
-        fetch(this.state.googleMapURL)
-        .then(function(response) {
-        }).catch(function(error) {
-          alert('There seems to be a problem with the Google Maps API response. Please reload the page.', error)
-        });
+
+  
 
     }
+
+  /*Error Handling*/
+
+  gm_authFailure() {
+    window.alert ('There seems to be a problem with the map. Please reload the page.')
+  }
 
     /*Infowindow functionality*/
   onToggleOpen = (event, marker) => {
@@ -99,7 +101,7 @@ class App extends Component {
     });
   }
 
-  searchEventHandler(value){
+  searchEventHandler(value){ /*Dropdown selection functionality*/
     const newLocation = this.state.locations.filter(
       location => location.venue.name === value);
     this.setState  ({

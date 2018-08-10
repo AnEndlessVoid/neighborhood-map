@@ -20,6 +20,14 @@
   font-size : 1.5rem;
 }
 
+.navbar-credit{
+  margin-left : 1rem;
+  color:white;
+  text-decoration : none;
+  font-size : 1rem;
+}
+
+
 .spacer{
   flex:1;
 }

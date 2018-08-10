@@ -1,20 +1,46 @@
 # neighborhood-map
-https://stackoverflow.com/tags/react-google-maps/hot?filter=all
 
-https://tomchentw.github.io/react-google-maps/#withscriptjs
+This is a React App that featuring a map of Athens. There are map markers to identify popular sights, as well as a dropdown menu function to easily discover these locations, and a list view to support simple browsing of all locations. Each marker provides additional information about each of these locations.
 
-https://www.youtube.com/watch?v=Uw5Ij56RhME
+#How to run the app
 
-https://medium.com/@yelstin.fernandes/render-a-map-component-using-react-google-maps-5f7fb3e418bb
+1. Clone the repository.
+2. You will need npm. If you have Node installed you have npm as well. If you don't have node, then install it from here https://nodejs.org/en/.
+3.Run npm install and then npm start, both in the cloned repository folder. The second command will open a browser window on localhost:3000, which will have the app running.
 
-https://stackoverflow.com/questions/50399464/react-google-maps-infowindow-toggle-display-one-at-a-time/50427200#50427200
+#API
 
-https://stackoverflow.com/questions/43859785/how-do-i-display-multiple-markers-with-react-google-maps
+This app uses 
+			-Google Maps API
+			-Forsquare API
+							to fetch the map and additional data on the markers' locations.
 
-https://developers.google.com/maps/documentation/javascript/examples/icon-simple
 
-https://blog.hellojs.org/fetching-api-data-with-react-js-460fe8bbf8f2
+#Service Worker
 
-https://www.youtube.com/watch?v=l6nmysZKHFU Navbar
+The service worker only works in the production build.
 
-SiteDrawer <- na valw edw to search field kai thn lista twn venues
+#Dependensies
+
+-react-google-maps
+https://tomchentw.github.io/react-google-maps/
+
+#Credit
+
+-Udacity's React lessons in FEND Nanodegree program
+-Udacity's Slack Channel
+-Google
+-StackOverflow
+-Skiptricks.com (inspiration for the navbar build https://www.skptricks.com/2018/05/create-dropdown-using-reactjs.html)
+-Medium.com (https://medium.com/@yelstin.fernandes/render-a-map-component-using-react-google-maps-5f7fb3e418bb)
+-https://developers.google.com/maps/documentation/javascript
+
+Also great thanks to 
+-Ertan Kara
+-Rafal Bagrowski
+-Jan Sysala
+-Eman Zaghloul
+-Niouraki Charikleia
+and many others in the great Udacity Slack community that helped me overcome any difficulty and bug that came accross me while building this app.
+
+
